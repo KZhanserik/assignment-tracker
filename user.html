@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+ 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta charset="UTF-8">
+  <title>User Page</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div>
+    <h1>User Page</h1>
+    <form id="userForm">
+      <input type="text" id="username" placeholder="Enter your username" required>
+      <button type="submit">Check Status</button>
+    </form>
+    <div id="statusDisplay"></div>
+  </div>
+  <script src="js/script.js"></script>
   <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
@@ -24,21 +41,5 @@
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
   </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta charset="UTF-8">
-  <title>User Page</title>
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <div>
-    <h1>User Page</h1>
-    <form id="userForm">
-      <input type="text" id="username" placeholder="Enter your username" required>
-      <button type="submit">Check Status</button>
-    </form>
-    <div id="statusDisplay"></div>
-  </div>
-  <script src="js/script.js"></script>
 </body>
 </html>

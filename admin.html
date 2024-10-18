@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta charset="UTF-8">
+  <title>Admin Page</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div>
+    <h1>Admin Page</h1>
+    <form id="adminForm">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="text" id="contract" placeholder="Договор">
+      <input type="text" id="vkk" placeholder="ВКК">
+      <input type="text" id="conclusion" placeholder="Заключение">
+      <input type="text" id="payment" placeholder="Ожидание оплаты">
+      <button type="submit">Add/Update</button>
+    </form>
+    <a href="admin_table.html">View All User Data</a>
+  </div>
+  <script src="js/script.js"></script>
   <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
@@ -24,25 +45,5 @@
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
   </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta charset="UTF-8">
-  <title>Admin Page</title>
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <div>
-    <h1>Admin Page</h1>
-    <form id="adminForm">
-      <input type="text" id="username" placeholder="Username" required>
-      <input type="text" id="contract" placeholder="Договор">
-      <input type="text" id="vkk" placeholder="ВКК">
-      <input type="text" id="conclusion" placeholder="Заключение">
-      <input type="text" id="payment" placeholder="Ожидание оплаты">
-      <button type="submit">Add/Update</button>
-    </form>
-    <a href="admin_table.html">View All User Data</a>
-  </div>
-  <script src="js/script.js"></script>
 </body>
 </html>
