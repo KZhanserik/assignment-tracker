@@ -1,7 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- 
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+    import { getAnalytics,getFirestore, collection, doc, setDoc, getDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyBLrwgBEwp6YJ5GTkCEKcgYnVbexhX7HSc",
+      authDomain: "assignment-169eb.firebaseapp.com",
+      projectId: "assignment-169eb",
+      storageBucket: "assignment-169eb.appspot.com",
+      messagingSenderId: "122554567005",
+      appId: "1:122554567005:web:e9cae393e1b290ab98c0b4",
+      measurementId: "G-D7D80VSM8J"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+  </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta charset="UTF-8">
@@ -14,29 +37,6 @@
     <a href="admin.html">Admin Page</a>
     <a href="user.html">User Page</a>
   </div>
-  <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
   
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyAWjj5Fn0cDnYVjFuEP16g0Ko3C6AlROG0",
-      authDomain: "assignment-tracker-b1e63.firebaseapp.com",
-      projectId: "assignment-tracker-b1e63",
-      storageBucket: "assignment-tracker-b1e63.appspot.com",
-      messagingSenderId: "457114449046",
-      appId: "1:457114449046:web:bde5af02ec928bd2fefeb7",
-      measurementId: "G-QJ9HCVGXCK"
-    };
-  
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-   const db = firebase.firestore();
-  </script>
 </body>
 </html>
