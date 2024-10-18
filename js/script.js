@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dataTable = document.getElementById('dataTable');
   
     if (adminForm) {
-      adminForm.addEventListener('submit', (e) => {
+      adminForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const username = document.getElementById('username').value;
         const contract = document.getElementById('contract').value || '';
@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const payment = document.getElementById('payment').value || '';
   
         const userData = { contract, vkk, conclusion, payment };
-        localStorage.setItem(username, JSON.stringify(userData));
+  
+        await db.collection('users').doc(username).set(userData);
   
         adminForm.reset();
         alert('User information updated!');
@@ -22,12 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   
     if (userForm) {
-      userForm.addEventListener('submit', (e) => {
+      userForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const username = document.getElementById('username').value;
-        const userData = JSON.parse(localStorage.getItem(username));
   
-        if (userData) {
+        const doc = await db.collection('users').doc(username).get();
+        if (doc.exists) {
+          const userData = doc.data();
           statusDisplay.innerHTML = `<h2>Status for ${username}</h2>`;
           statusDisplay.innerHTML += `
             <p>Договор: ${userData.contract}</p>
@@ -42,23 +44,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   
     if (dataTable) {
-      const tbody = dataTable.querySelector('tbody');
-      tbody.innerHTML = ''; // Clear existing data
+      const loadTableData = async () => {
+        const tbody = dataTable.querySelector('tbody');
+        tbody.innerHTML = ''; // Clear existing data
   
-      for (let i = 0; i < localStorage.length; i++) {
-        const username = localStorage.key(i);
-        const userData = JSON.parse(localStorage.getItem(username));
+        const snapshot = await db.collection('users').get();
+        snapshot.forEach(doc => {
+          const userData = doc.data();
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${doc.id}</td>
+            <td>${userData.contract}</td>
+            <td>${userData.vkk}</td>
+            <td>${userData.conclusion}</td>
+            <td>${userData.payment}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      };
   
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${username}</td>
-          <td>${userData.contract}</td>
-          <td>${userData.vkk}</td>
-          <td>${userData.conclusion}</td>
-          <td>${userData.payment}</td>
-        `;
-        tbody.appendChild(row);
-      }
+      loadTableData(); // Call the async function to load data
     }
   });
   
